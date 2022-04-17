@@ -25,8 +25,9 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date", function ech(req, res) {
-  datemilisec=Date.UTC(req.params.date).ToNumber();
-  res.json({ unix: datemilisec, utc: });
+  var datemilisec=Date(req.params.date);
+  var dateutc=Date(req.params.date);
+  res.json({ unix: datemilisec.UTC(), utc: dateutc});
 });
 
 // listen for requests :)
