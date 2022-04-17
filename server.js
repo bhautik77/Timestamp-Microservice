@@ -24,10 +24,14 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api", function ech(req, res) {
+  var date=new Date();
+  res.json({ unix: date.valueOf(), utc: date.toUTCString()});
+});
+
 app.get("/api/:date", function ech(req, res) {
-  var datemilisec=Date(req.params.date);
-  var dateutc=Date(req.params.date);
-  res.json({ unix: datemilisec.UTC(), utc: dateutc});
+  var date=new Date(req.params.date);
+  res.json({ unix: date.valueOf(), utc: date.toUTCString()});
 });
 
 // listen for requests :)
