@@ -29,9 +29,13 @@ app.get("/api", function ech(req, res) {
 });
 
 app.get("/api/:date", function ech(req, res) {
-  var date = new Date(parseInt(req.params.date));
+  var date = new Date(req.params.date);
+
   if (isNaN(date.valueOf())) {
-    res.json({ error: "Invalid Date" });
+    var datemilli = new Date(parseInt(req.params.date));
+    if (isNaN(datemilli.valueOf()))
+      res.json({ error: "Invalid Date" });
+    res.json({ unix: datemilli.valueOf(), utc: datemilli.toUTCString() });
   }
   res.json({ unix: date.valueOf(), utc: date.toUTCString() });
 });
