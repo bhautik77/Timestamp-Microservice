@@ -24,7 +24,10 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-
+app.get("/api/:date", function ech(req, res) {
+  datemilisec=Date.UTC(req.params.date).ToNumber();
+  res.json({ unix: datemilisec, utc: });
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
